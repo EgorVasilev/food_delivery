@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Delivery</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+  <div id="app">
+
+    <header>
+      <div id="header-logo"></div>
+      <div class="navigation">
+        <nav>
+        <ul>
+          <li><a href="">Меню</a></li>
+          <li><a href="">Акции</a></li>
+          <li><a href="">Доставка</a></li>
+          <li><a href="">Контакты</a></li>
+          <li><a href="">О нас</a></li>
+        </ul>
+      </nav>
+        <div class="social-media-header">
+          <ul>
+            <li><a href="https://vk.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-vk" aria-hidden="true"></i></a>
+  </li>
+            <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  </li>
+            <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+            <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-odnoklassniki" aria-hidden="true"></a></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="contacts-header">
+        <div class="phone">
+          <a href="tel:+78482777777"><i class="fa fa-phone" aria-hidden="true"></i> 77-77-77</a>
+          <p class="tip-mobile">нажмите для звонка</p>
+        </div>
+        <div class="work-time">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <span>08:00 - 23:00</span>
+          <p class="tip-mobile">время работы</p>
+        </div>
+      </div>
+    </header>
+
+  <!-- ### MAIN FORM ### -->
+<section class="main-form">
+  <div class="day-select-mobile">
+    <select name="day-select" id="day-select">
+      <option value="monday" id="monday" v-on:click="daySet">Понедельник, 3 июня</option>
+      <option value="tuesday" id="tuesday" v-on:click="daySet">Вторник, 4 июня</option>
+      <option value="wednesday" id="wednesday" v-on:click="daySet">Среда, 5 июня</option>
+      <option value="thursday" id="thursday" v-on:click="daySet">Четверг, 6 июня</option>
+      <option value="friday" id="friday" v-on:click="daySet">Пятница, 7 июня</option>
+    </select>
+    <span class="tip-mobile">меню дня</span>
+  </div>
+  
+  <div class="day-select">
+    <p class="tip-mobile">выберите день недели</p>
+    <div class="week-day-list">
+      <div id="monday" class="week-day" v-on:click="daySet">
+        <span>Понедельник</span>
+        <span>3 июня</span>
+      </div>
+      <div id="tuesday" class="week-day" v-on:click="daySet">
+        <span>Вторник</span>
+        <span>4 июня</span>
+      </div>
+      <div id="wednesday" class="week-day" v-on:click="daySet">
+        <span>Среда</span>
+        <span>5 июня</span>
+      </div>
+      <div id="thuesday" class="week-day" v-on:click="daySet">
+        <span>Четверг</span>
+        <span>6 июня</span>
+      </div>
+      <div id="friday" class="week-day" v-on:click="daySet">
+        <span>Пятница</span>
+        <span>7 июня</span>
+      </div>
+    </div>
+  </div> 
+  <div class="lunch-menu">
+      <div class="menu-part">
+        <p class="lunch-menu-category">Cуп</p>
+        <ul>
+          <template v-for="item in menu[day].soup">
+            <div class="meal-discription">
+              <span class="meal-name">{{ item.name }}</span>
+              <span>{{ item.weight }}</span>
+              <span>{{ item.cost }}p.</span>
+              <input type="checkbox" :value="item" v-model="checked">
+            </div>
+          </template>
+        </ul>
+      </div>
+      <div class="menu-part">
+        <p class="lunch-menu-category">Горячее</p>
+        <ul>
+          <template v-for="item in menu[day].hotMeal">
+            <div class="meal-discription">
+              <span class="meal-name">{{ item.name }}</span>
+              <span>{{ item.weight }}</span>
+              <span>{{ item.cost }}p.</span>
+              <input type="checkbox" :value="item" v-model="checked">
+            </div>
+          </template>
+        </ul>
+      </div>
+      <div class="menu-part">
+        <p class="lunch-menu-category">Гарнир</p>
+        <ul>
+          <template v-for="item in menu[day].garnish">
+            <div class="meal-discription">
+              <span class="meal-name">{{ item.name }}</span>
+              <span>{{ item.weight }}</span>
+              <span>{{ item.cost }}p.</span>
+              <input type="checkbox" :value="item" v-model="checked">
+            </div>
+          </template>
+        </ul>
+      </div>
+      <div class="menu-part">
+        <p class="lunch-menu-category">Салаты</p>
+        <ul>
+          <template v-for="item in menu[day].sideDish">
+            <div class="meal-discription">
+              <span class="meal-name">{{ item.name }}</span>
+              <span>{{ item.weight }}</span>
+              <span>{{ item.cost }}p.</span>
+              <input type="checkbox" :value="item" v-model="checked">
+            </div>
+          </template>
+        </ul>
+      </div>
+    </div>
+  <div class="order-count">
+    <span>Кол-во порций:</span>
+    <div>
+      <button v-on:click="numOfPortions -= 1">-</button>
+      <input type="text" maxlength="2" value="1" v-model="numOfPortions">
+      <button v-on:click="numOfPortions += 1">+</button>
+    </div>
+    
+    <div class="total-cost">
+      <span>Итого: {{ totalCost }} рублей</span>
+      <span class="tip-mobile" v-if="totalCost < 300">+50 рублей за доставку</span>
+      <span class="tip-mobile" v-if="totalCost < 300">(бесплатно от 300 рублей)</span>
+      <span class="tip-mobile" v-if="totalCost > 300">бесплатная доставка!</span>
+    </div>
+    <button id="orderBtn">В корзину</button>
+    <button id="ordersTodayBtn">Заказы сегодня</button>
+  </div>
+</section>
+
+<!-- order modal window -->
+
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="order-list">
+      <p>Вы заказали:</p>
+      <ul>
+          <template v-for="item in checked">
+            <div class="order-options">
+	              <span class="meal-name">{{ item.name }}</span>
+              	  <span>{{ item.cost }}p.</span>
+              	  <div>
+              	  	<button v-on:click="item.qt -= 1">-</button>
+	              	<span>{{ item.qt }}</span>
+	              	<button v-on:click="item.qt += 1">+</button>
+              	  </div>
+	                 
+            </div>
+          </template>
+        </ul>
+        <p>Количество порций: {{ numOfPortions }} </p>
+        <p>Итого: {{ totalCost }}р. </p>
+        <p>Включая стоимость доставки: {{ finalCost }}  </p>
+        <p class="tip-mobile">(бесплатно от 300р.)</p>
+        <div class="orderInp">
+        	<input type="text" id="clientName" placeholder="Введите ваше имя">
+        	<button v-if="orderSuccess == false" type="button" v-on:click="sendOrder">Оформить заказ</button>
+        </div>
+
+        <span v-if="orderSuccess">Ваш заказ принят!</span>
+        <button v-if="orderSuccess"></button>
+    </div>
+  </div>
+</div>
+
+<!-- orders today modal window -->
+
+<div id="ordersToday" class="modal">
+  <div class="modal-content">
+    <span class="closeOrdersToday">&times;</span>
+    <p><span>{{ ordersTodayRender }}</span> </p>
+  </div>
+</div>
+  </div>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
