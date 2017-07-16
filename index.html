@@ -50,12 +50,12 @@
   <!-- ### MAIN FORM ### -->
 <section class="main-form">
   <div class="day-select-mobile">
-    <select name="day-select" id="day-select">
-      <option value="monday" id="monday" v-on:click="daySet">Понедельник, 3 июня</option>
-      <option value="tuesday" id="tuesday" v-on:click="daySet">Вторник, 4 июня</option>
-      <option value="wednesday" id="wednesday" v-on:click="daySet">Среда, 5 июня</option>
-      <option value="thursday" id="thursday" v-on:click="daySet">Четверг, 6 июня</option>
-      <option value="friday" id="friday" v-on:click="daySet">Пятница, 7 июня</option>
+    <select name="day-select" id="day-select" v-model="day">
+      <option value="monday" id="monday-select" v-on:click="daySet">Понедельник, 3 июня</option>
+      <option value="tuesday" id="tuesday-select" v-on:click="daySet">Вторник, 4 июня</option>
+      <option value="wednesday" id="wednesday-select" v-on:click="daySet">Среда, 5 июня</option>
+      <option value="thursday" id="thursday-select" v-on:click="daySet">Четверг, 6 июня</option>
+      <option value="friday" id="friday-select" v-on:click="daySet">Пятница, 7 июня</option>
     </select>
     <span class="tip-mobile">меню дня</span>
   </div>
@@ -65,23 +65,18 @@
     <div class="week-day-list">
       <div id="monday" class="week-day" v-on:click="daySet">
         <span>Понедельник</span>
-        <span>3 июня</span>
       </div>
       <div id="tuesday" class="week-day" v-on:click="daySet">
         <span>Вторник</span>
-        <span>4 июня</span>
       </div>
       <div id="wednesday" class="week-day" v-on:click="daySet">
         <span>Среда</span>
-        <span>5 июня</span>
       </div>
-      <div id="thuesday" class="week-day" v-on:click="daySet">
+      <div id="thursday" class="week-day" v-on:click="daySet">
         <span>Четверг</span>
-        <span>6 июня</span>
       </div>
       <div id="friday" class="week-day" v-on:click="daySet">
         <span>Пятница</span>
-        <span>7 июня</span>
       </div>
     </div>
   </div> 
@@ -153,11 +148,24 @@
       <span class="tip-mobile" v-if="totalCost < 300">(бесплатно от 300 рублей)</span>
       <span class="tip-mobile" v-if="totalCost > 300">бесплатная доставка!</span>
     </div>
-    <button id="orderBtn">В корзину</button>
-    <button id="ordersTodayBtn">Заказы сегодня</button>
+    <button id="orderBtn" v-on:click="orderModal">В корзину</button>
+    <button id="ordersTodayBtn" v-on:click="getOrders">Заказы сегодня</button>
   </div>
 </section>
+<footer>
+  <p>Благодарим за Ваш визит{{ usernameRender }} </p>
+  <div class="social-media-footer">
+    <ul>
+      <li><a href="https://vk.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-vk" aria-hidden="true"></i></a>
+  </li>
+      <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  </li>
+      <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+      <li><a href="" target="_blank" rel="noopener noreferrer"><i class="fa fa-odnoklassniki" aria-hidden="true"></a></i></li>
+    </ul>
+  </div>
 
+</footer>
 <!-- order modal window -->
 
 <div id="orderModal" class="modal">
@@ -184,12 +192,13 @@
         <p>Включая стоимость доставки: {{ finalCost }}  </p>
         <p class="tip-mobile">(бесплатно от 300р.)</p>
         <div class="orderInp">
-        	<input type="text" id="clientName" placeholder="Введите ваше имя">
-        	<button v-if="orderSuccess == false" type="button" v-on:click="sendOrder">Оформить заказ</button>
+          <form action="#" v-on:submit.prevent="sendOrder">
+            <input type="text" id="clientName" required placeholder="Введите ваше имя">
+            <button v-if="orderSuccess == false" type="submint">Оформить заказ</button>
+          </form>
         </div>
 
         <span v-if="orderSuccess">Ваш заказ принят!</span>
-        <button v-if="orderSuccess"></button>
     </div>
   </div>
 </div>
@@ -199,7 +208,12 @@
 <div id="ordersToday" class="modal">
   <div class="modal-content">
     <span class="closeOrdersToday">&times;</span>
-    <p><span>{{ ordersTodayRender }}</span> </p>
+    <ul v-if="ordersTodayRender != 0">
+      <template v-for="item in ordersTodayRender">
+        <p> {{ item }} </p>
+      </template>
+    </ul>
+    <span v-else>Сегодня заказов еще не было</span>
   </div>
 </div>
   </div>

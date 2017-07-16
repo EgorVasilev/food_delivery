@@ -45,6 +45,7 @@ ul {
     .modal-content .order-list .orderInp {
       margin-top: 20px; }
     .modal-content .order-list ul .order-options {
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between; }
       .modal-content .order-list ul .order-options span {
@@ -179,38 +180,30 @@ ul {
 #ordersTodayBtn {
   margin-top: 30px; }
 
-@media screen and (min-width: 900px) {
-  .modal-content {
-    width: 60%; }
-
-  #header-logo {
-    height: 170px; }
-
-  .navigation nav {
-    width: 70%; }
-    .navigation nav ul li {
-      font-size: 22px;
-      padding: 8px;
-      transition: background-color 0.2s ease-in; }
-    .navigation nav ul li:hover {
-      cursor: pointer;
-      background-color: #ff5900; }
-  .navigation .social-media-header {
-    width: 30%;
-    display: block;
-    margin-right: 30px; }
-    .navigation .social-media-header ul {
+footer {
+  font-family: arial;
+  font-size: 18px;
+  background-color: #FFF;
+  overflow: auto; }
+  footer p {
+    text-align: center;
+    margin-top: 15px; }
+  footer .social-media-footer {
+    width: 100%;
+    display: inline-block; }
+    footer .social-media-footer ul {
       display: flex;
-      justify-content: flex-end; }
-      .navigation .social-media-header ul li {
+      justify-content: center; }
+      footer .social-media-footer ul li {
         font-size: 30px;
-        margin-right: 15px;
+        margin: 0px 15px 0px 15px;
         list-style-type: none;
         transition: color 0.2s ease-in; }
-      .navigation .social-media-header ul li:hover {
+      footer .social-media-footer ul li:hover {
         cursor: pointer;
         color: #acb; }
 
+@media screen and (min-width: 600px) {
   .day-select-mobile {
     display: none; }
 
@@ -246,5 +239,41 @@ ul {
     width: 60%;
     display: flex;
     flex-direction: column; } }
+@media screen and (min-width: 900px) {
+  .modal-content {
+    width: 60%; }
+
+  #header-logo {
+    height: 170px; }
+
+  .navigation nav {
+    width: 70%; }
+    .navigation nav ul li {
+      font-size: 22px;
+      padding: 8px;
+      transition: background-color 0.2s ease-in; }
+    .navigation nav ul li:hover {
+      cursor: pointer;
+      background-color: #ff5900; }
+  .navigation .social-media-header {
+    width: 30%;
+    display: block;
+    margin-right: 30px; }
+    .navigation .social-media-header ul {
+      display: flex;
+      justify-content: flex-end; }
+      .navigation .social-media-header ul li {
+        font-size: 30px;
+        margin-right: 15px;
+        list-style-type: none;
+        transition: color 0.2s ease-in; }
+      .navigation .social-media-header ul li:hover {
+        cursor: pointer;
+        color: #acb; }
+
+  footer p {
+    margin: 30px 0px 30px 0px; }
+  footer .social-media-footer {
+    display: none; } }
 
 /*# sourceMappingURL=style.css.map */

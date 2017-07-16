@@ -45,6 +45,7 @@ ul
 			margin-top: 20px
 		ul
 			.order-options
+				margin-bottom: 10px
 				display: flex
 				justify-content: space-between
 				span
@@ -175,6 +176,62 @@ ul
 		min-width: 30px
 #ordersTodayBtn
 	margin-top: 30px
+footer
+	font-family: arial
+	font-size: 18px
+	background-color: #FFF
+	overflow: auto
+	p
+		text-align: center
+		margin-top: 15px
+	.social-media-footer
+		width: 100%
+		display: inline-block
+		ul
+			display: flex
+			justify-content: center
+			li
+				font-size: 30px
+				margin: 0px 15px 0px 15px
+				list-style-type: none
+				transition: color .2s ease-in
+			li:hover
+				cursor: pointer
+				color: #acb
+@media screen and (min-width: 600px)
+	.day-select-mobile
+		display: none
+	.main-form
+		display: flex
+		align-items: center
+		flex-direction: column
+	.day-select
+		display: flex
+		justify-content: space-around
+		align-items: center
+		flex-direction: column
+		align-content: space-around
+		font-family: arial
+		.week-day-list
+			display: flex
+			flex-direction: row
+			.week-day
+				margin-right: 40px
+				display: flex
+				flex-direction: column
+				border-bottom: 1px solid transparent
+			.week-day:hover
+				cursor: pointer
+				border-bottom: 1px solid black
+			.week-day-set
+				border-bottom: 1px solid rgb(255,89,0)
+		span
+			font-size: 20px
+	.lunch-menu
+		width: 60%
+		display: flex
+		flex-direction: column
+
 @media screen and (min-width: 900px)
 	.modal-content
 		width: 60%
@@ -207,41 +264,11 @@ ul
 				li:hover
 					cursor: pointer
 					color: #acb
-	//  MAIN FORM //
-	.day-select-mobile
-		display: none
-	.main-form
-		display: flex
-		align-items: center
-		flex-direction: column
-	.day-select
-		display: flex
-		justify-content: space-around
-		align-items: center
-		flex-direction: column
-		align-content: space-around
-		font-family: arial
-		.week-day-list
-			display: flex
-			flex-direction: row
-			.week-day
-				margin-right: 40px
-				display: flex
-				flex-direction: column
-				border-bottom: 1px solid transparent
-			.week-day:hover
-				cursor: pointer
-				border-bottom: 1px solid black
-			.week-day-set
-				border-bottom: 1px solid rgb(255,89,0)
-		span
-			font-size: 20px
-	
-
-	.lunch-menu
-		width: 60%
-		display: flex
-		flex-direction: column
+	footer
+		p
+			margin: 30px 0px 30px 0px
+		.social-media-footer
+			display: none
 
 
 
